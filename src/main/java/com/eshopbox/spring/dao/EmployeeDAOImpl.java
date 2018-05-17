@@ -3,8 +3,11 @@ package com.eshopbox.spring.dao;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +61,17 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		Employee p = (Employee) session.load(Employee.class, new Integer(id));
 		logger.info("Employee loaded successfully, Employee details="+p);
 		return p;
+	}
+	
+	@Override
+	public List<Employee> getEmployeeByName(String name) {
+		Session session = this.sessionFactory.getCurrentSession();		
+		Criteria cr = session.createCriteria(Employee.class);
+
+		
+		cr.add(Restrictions.like("employeeName","%"+name+"%"));
+		return cr.list();
+		
 	}
 
 	@Override

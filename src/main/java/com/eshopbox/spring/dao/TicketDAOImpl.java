@@ -3,13 +3,16 @@ package com.eshopbox.spring.dao;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.eshopbox.spring.model.Employee;
 import com.eshopbox.spring.model.Ticket;
 
 @Repository("ticketDAO")
@@ -69,5 +72,26 @@ public class TicketDAOImpl implements TicketDAO {
 		}
 		logger.info("Ticket deleted successfully, ticket details="+p);
 	}
+	
+	@Override
+	public List<Ticket> getTicketByManagerId(Integer managerId) {
+		Session session = this.sessionFactory.getCurrentSession();		
+		Criteria cr = session.createCriteria(Ticket.class);
+		cr.add(Restrictions.eq("createdBy",managerId));
+		return cr.list();
+		
+	}
+	@Override
+	public List<Ticket> getPendingTicketByManagerId(Integer managerId) {
+		Session session = this.sessionFactory.getCurrentSession();		
+		Criteria cr = session.createCriteria(Ticket.class);
+		cr.add(Restrictions.eq("createdBy",managerId));
+		//cr.add(Restrictions.isEmpty("closeBy"));
+		cr.add(Restrictions.isNull("closeBy"));
+		return cr.list();
+		
+	}
+	
+	
 
 }

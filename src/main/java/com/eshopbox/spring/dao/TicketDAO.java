@@ -11,4 +11,6 @@ public interface TicketDAO {
 	public List<Ticket> listTickets();
 	public Ticket getTicketById(int id);
 	public void removeTicket(int id);
+	public List<Ticket> getTicketByManagerId(Integer managerId);
+	public List<Ticket> getPendingTicketByManagerId(Integer managerId) ;
 }

@@ -2,18 +2,20 @@ package com.eshopbox.spring.model;
 
 
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
 @Entity
-@Table(name="TICKET")
+@Table(name="ticket")
 public class Ticket {
 	
 	@Id
@@ -22,7 +24,7 @@ public class Ticket {
 	private Integer ticketId;
 	
 	private String summary;
-	private  String description;
+	private String description;
 	private Integer type;
 	private Integer createdBy;
 	private Date creationTime;
@@ -30,6 +32,19 @@ public class Ticket {
 	private Date assignmentTime;
 	private Integer closeBy;
 	private Date closingTime;
+	
+	/*@ManyToOne
+	@JoinColumn(name="createdBy", nullable=true)
+	private Employee createdByEmployee;
+	
+	public Employee getCreatedByEmployee() {
+		return createdByEmployee;
+	}
+	public void setCreatedByEmployee(Employee createdByEmployee) {
+		this.createdByEmployee = createdByEmployee;
+	}*/
+	
+	
 	public Integer getTicketId() {
 		return ticketId;
 	}
@@ -89,6 +104,12 @@ public class Ticket {
 	}
 	public void setClosingTime(Date closingTime) {
 		this.closingTime = closingTime;
+	}
+	@Override
+	public String toString() {
+		return "Ticket [ticketId=" + ticketId + ", summary=" + summary + ", description=" + description + ", type="
+				+ type + ", createdBy=" + createdBy + ", creationTime=" + creationTime + ", assignedTo=" + assignedTo
+				+ ", assignmentTime=" + assignmentTime + ", closeBy=" + closeBy + ", closingTime=" + closingTime + "]";
 	}
 	
 	

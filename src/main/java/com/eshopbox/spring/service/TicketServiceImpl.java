@@ -1,7 +1,11 @@
 package com.eshopbox.spring.service;
 
+import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,6 +51,36 @@ public class TicketServiceImpl implements TicketService {
 	@Transactional
 	public void removeTicket(int id) {
 		this.ticketDAO.removeTicket(id);
+	}
+	@Override
+	@Transactional
+	public List<Ticket> getTicketByManagerId(Integer managerId){
+		return this.ticketDAO.getTicketByManagerId(managerId);
+	}
+	@Override
+	@Transactional
+	public List<Ticket> getPendingTicketByManagerId(Integer managerId){
+		return this.ticketDAO.getPendingTicketByManagerId(managerId);
+	}
+	
+	
+	@Override
+	@Transactional
+	public void assignTicket(Integer ticketId,Integer userId) {
+		Ticket ticket=this.getTicketById(ticketId);
+		ticket.setAssignmentTime(new Date());
+	    ticket.setAssignedTo(userId);
+	    this.updateTicket(ticket);
+		
+	}
+	@Override
+	@Transactional
+	public void closeTicket(Integer ticketId,Integer userId) {
+		Ticket ticket=this.getTicketById(ticketId);
+		ticket.setClosingTime(new Date());
+	    ticket.setAssignedTo(userId);
+	    this.updateTicket(ticket);
+		
 	}
 
 }
