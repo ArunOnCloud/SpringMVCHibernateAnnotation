@@ -45,6 +45,7 @@
 				<beans:value>com.eshopbox.spring.model.Person</beans:value>
 				<beans:value>com.eshopbox.spring.model.Department</beans:value>
 				<beans:value>com.eshopbox.spring.model.Employee</beans:value>
+				<beans:value>com.eshopbox.spring.model.Ticket</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
