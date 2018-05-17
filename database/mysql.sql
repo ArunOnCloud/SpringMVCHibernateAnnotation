@@ -74,18 +74,21 @@ CREATE TABLE IF NOT EXISTS `ticket` (
   `description` varchar(500) NOT NULL DEFAULT '',
   `type` int(11) unsigned DEFAULT '0',
   `createdBy` int(11) unsigned NOT NULL,
-  `creationTime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `creationTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `assignedTo` int(11) unsigned DEFAULT NULL,
-  `assignmentTime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `assignmentTime` timestamp NULL DEFAULT NULL,
   `closeBy` int(11) unsigned DEFAULT NULL,
-  `closingTime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `closingTime` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`ticketId`),
   KEY `FK_ticket_employee` (`createdBy`),
   CONSTRAINT `FK_ticket_employee` FOREIGN KEY (`createdBy`) REFERENCES `employee` (`employeeId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Dumping data for table sampleticketsystem.ticket: ~0 rows (approximately)
+-- Dumping data for table sampleticketsystem.ticket: ~2 rows (approximately)
 /*!40000 ALTER TABLE `ticket` DISABLE KEYS */;
+INSERT INTO `ticket` (`ticketId`, `summary`, `description`, `type`, `createdBy`, `creationTime`, `assignedTo`, `assignmentTime`, `closeBy`, `closingTime`) VALUES
+	(1, 'Simple ticket', 'afa', 0, 1, '2018-05-17 00:00:00', 0, NULL, NULL, NULL),
+	(2, 'Simple ticket', 'afa', 0, 1, '2018-05-17 00:00:00', 1, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `ticket` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
