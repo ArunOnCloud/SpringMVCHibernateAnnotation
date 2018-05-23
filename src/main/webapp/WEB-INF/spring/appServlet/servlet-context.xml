@@ -28,14 +28,16 @@
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<beans:property name="url"
-			value="jdbc:mysql://localhost:3306/sampleticketsystem" />
 		<!-- <beans:property name="url"
-			value="jdbc:mysql://35.193.207.226:3306/sampleticketsystem" />
+			value="jdbc:mysql://localhost:3306/sampleticketsystem" />
 		<beans:property name="username" value="root" />
-		<beans:property name="password" value="arun@123" /> -->
+		<beans:property name="password" value="" /> -->
+		<beans:property name="url"
+			value="jdbc:mysql://google/sampleticketsystem?useSSL=false&amp;cloudSqlInstance=webappjava-204910:us-central1:webappsql&amp;socketFactory=com.google.cloud.sql.mysql.SocketFactory&amp;user=root&amp;password=arun@123
+" />
 		<beans:property name="username" value="root" />
-		<beans:property name="password" value="" />
+		<beans:property name="password" value="arun@123" />
+		
 	</beans:bean>
 
 	<!-- Hibernate 4 SessionFactory Bean definition -->
