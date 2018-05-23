@@ -2,6 +2,7 @@ package com.eshopbox.spring;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,6 +14,7 @@ import com.eshopbox.spring.model.Person;
 import com.eshopbox.spring.service.PersonService;
 
 @Controller
+//@Component
 public class PersonController {
 	
 	@Autowired
